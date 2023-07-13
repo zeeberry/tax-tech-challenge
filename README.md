@@ -21,4 +21,10 @@ npm test
 ```
 
 ## Notes
-This project was started using create-next-app.
+- This project was started using create-next-app.
+
+## Dependencies
+- Chakra UI: React Component Library
+- Chakra UI Icons: Basic Icons
+- React Hook Form: Performant, flexible and extensible forms with easy-to-use validation.
+
