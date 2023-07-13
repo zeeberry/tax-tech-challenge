@@ -15,24 +15,40 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { PhoneIcon, EmailIcon} from '@chakra-ui/icons'
-
+import { useForm } from 'react-hook-form'
 
 export default function ReservationForm() {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm()
+
+  function onSubmit(values) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        alert(JSON.stringify(values, null, 2))
+        resolve()
+      }, 3000)
+    })
+  }
+
   return (
     <Box>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <VStack mb='4' align='stretch' spacing='4'>
           <Box>
-            <FormControl>
+            <FormControl isInvalid={errors.name}>
               <FormLabel htmlFor='name'>Name</FormLabel>
               <Input
                 id='name'
                 placeholder='Name'
+                {...register("name", { required: true })}
               />
             </FormControl>
           </Box>
           <Box>
-            <FormLabel htmlFor='phone'>Email Address</FormLabel>
+            <FormLabel htmlFor='email'>Email Address</FormLabel>
             <InputGroup>
               <InputLeftElement pointerEvents='none'>
                 <EmailIcon color='gray.300' />
@@ -40,6 +56,7 @@ export default function ReservationForm() {
               <Input
                 type='email'
                 placeholder='Email Address'
+                {...register("email", { required: true })}
               />
             </InputGroup>
           </Box>
@@ -52,6 +69,7 @@ export default function ReservationForm() {
               <Input
                 type='tel'
                 placeholder='Phone number'
+                {...register("phone", { required: true })}
               />
             </InputGroup>
           </Box>
@@ -61,6 +79,7 @@ export default function ReservationForm() {
             <FormLabel htmlFor='guests'>Guests</FormLabel>
             <Select
               placeholder='Select Guests'
+              {...register("guest", { required: true })}
             >
               <option value='1'>1 Guest</option>
               <option value='2'>2 Guests</option>
@@ -76,12 +95,14 @@ export default function ReservationForm() {
             <Input
               placeholder="Select Date"
               type="date"
+              {...register("date", { required: true })}
             />
           </Box>
           <Box>
             <FormLabel htmlFor='guests'>Time</FormLabel>
             <Select
               placeholder='Select Time Slot'
+              {...register("time", { required: true })}
             >
               <option value='1'>5:00 PM</option>
               <option value='2'>5:30 PM</option>
@@ -96,7 +117,7 @@ export default function ReservationForm() {
             </Select>
           </Box>
         </HStack>
-        <Button mt={4} colorScheme='teal' type='submit'>
+        <Button mt={4} colorScheme='teal' isLoading={isSubmitting} type='submit'>
           Reserve
         </Button>
       </form>
