@@ -25,12 +25,18 @@ export default function ReservationForm() {
   } = useForm()
 
   function onSubmit(values) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2))
-        resolve()
-      }, 3000)
-    })
+    console.log(JSON.stringify(values, null, 2))
+    const postData = async () => {
+      const response = await fetch("/api/reserve", {
+        method: "POST",
+        body: JSON.stringify(values),
+      });
+      return response.json();
+    };
+
+    return postData().then((data) => {
+      alert(data.name);
+    });
   }
 
   return (
