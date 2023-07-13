@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Layout, { siteTitle } from '../components/layout'
 import {
   FormErrorMessage,
   FormLabel,
@@ -19,9 +20,9 @@ import { StarIcon, PhoneIcon, EmailIcon} from '@chakra-ui/icons'
 
 export default function Home() {
   return (
-    <>
+    <Layout>
       <Head>
-        <title>Tax Tech Challenge</title>
+        <title>{siteTitle}</title>
       </Head>
       <Box mt='6'>
         <Heading as='h1'>Cafe Camellia</Heading>
@@ -128,6 +129,6 @@ export default function Home() {
           </Button>
         </form>
       </Box>
-    </>
+    </Layout>
   )
 }
