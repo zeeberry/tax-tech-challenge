@@ -43,8 +43,13 @@ export default function ReservationForm() {
               <Input
                 id='name'
                 placeholder='Name'
-                {...register("name", { required: true })}
+                {...register("name", { 
+                  required: 'This is required',
+                })}
               />
+              <FormErrorMessage>
+                {errors.name && errors.name.message}
+              </FormErrorMessage>
             </FormControl>
           </Box>
           <Box>
