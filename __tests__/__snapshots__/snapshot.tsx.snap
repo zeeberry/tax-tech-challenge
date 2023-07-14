@@ -208,7 +208,7 @@ exports[`renders homepage unchanged 1`] = `
               >
                 <select
                   class="chakra-select css-1ik61og"
-                  name="guest"
+                  name="guests"
                 >
                   <option
                     value=""
