@@ -1,9 +1,9 @@
-const fs = require('fs');
+const fs = require("fs");
 
-let tables = require('../../data/tables.json');
+let tables = require("../../data/tables.json");
 
 export const Tables = {
-    getAll: () => tables,
-    getByCapacity: size => tables.filter(x => x.capacity >= size),
-    find: x => tables.find(x),
+  getAll: () => tables,
+  getByCapacity: (size) => tables.filter((x) => x.capacity >= size),
+  find: (x) => tables.find(x),
 };
