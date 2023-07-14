@@ -28,7 +28,6 @@ export default function ReservationForm() {
   const toast = useToast();
 
   function onSubmit(values) {
-    console.log(JSON.stringify(values, null, 2));
     const postData = async () => {
       const response = await fetch("/api/reserve", {
         method: "POST",
@@ -38,7 +37,6 @@ export default function ReservationForm() {
     };
 
     return postData().then((data) => {
-      console.log(data);
       toast({
         title: data.message,
         description: "Thank you for making a reservation",

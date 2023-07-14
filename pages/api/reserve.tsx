@@ -12,9 +12,7 @@ export default function handleReservation(req, res) {
       phone: data.phone,
     };
 
-    console.log(data);
     const tablesForPartySize = Tables.getByCapacity(data.guests);
-    console.log("tableForPartySize", tablesForPartySize);
     const reservationsForDateTime = Reservations.getByDateTime(
       data.date,
       data.time,
@@ -22,15 +20,12 @@ export default function handleReservation(req, res) {
     let availableTable;
     if (reservationsForDateTime) {
       const bookedTables = reservationsForDateTime.map((r) => r.table_id);
-      console.log("bookedTables", bookedTables);
 
       availableTable = tablesForPartySize.find(
         (t) => !bookedTables.includes(t.id),
       );
-      console.log(availableTable);
       if (!availableTable) {
         res.status(409).json({ message: "Unable to book your reservation" });
-        return;
       }
     }
 

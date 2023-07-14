@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "user_id": 1,
+        "table_id": 1,
+        "date": "2023-07-05",
+        "time_slot": "7",
+        "party_size": "3",
+        "id": 1,
+        "dateCreated": "2023-07-14T04:16:09.984Z",
+        "dateUpdated": "2023-07-14T04:16:09.984Z"
+    }
+]
