@@ -13,6 +13,7 @@ import {
   Select,
   HStack,
   VStack,
+  useToast
 } from '@chakra-ui/react'
 import { PhoneIcon, EmailIcon} from '@chakra-ui/icons'
 import { useForm } from 'react-hook-form'
@@ -23,6 +24,8 @@ export default function ReservationForm() {
     register,
     formState: { errors, isSubmitting },
   } = useForm()
+
+  const toast = useToast()
 
   function onSubmit(values) {
     console.log(JSON.stringify(values, null, 2))
@@ -35,7 +38,14 @@ export default function ReservationForm() {
     };
 
     return postData().then((data) => {
-      alert(data.name);
+      console.log(data)
+      toast({
+        title: data.message,
+        description: "Thank you for making a reservation",
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
     });
   }
 
@@ -90,7 +100,7 @@ export default function ReservationForm() {
             <FormLabel htmlFor='guests'>Guests</FormLabel>
             <Select
               placeholder='Select Guests'
-              {...register("guest", { required: true })}
+              {...register("guests", { required: true })}
             >
               <option value='1'>1 Guest</option>
               <option value='2'>2 Guests</option>
